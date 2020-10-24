@@ -1,18 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from read_data import get_planet_data
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
+data = get_planet_data()
+
 @app.route("/")
 def index():
-    data = get_planet_data()
-    return render_template("index.html", data=data)
+    return render_template("index.html")
 
-@app.route("/zoom")
+@app.route("/api")
+def api():
+    return jsonify(data)
+
+@app.route("/jeff")
 def zoom():
-    data = get_planet_data()
-    return render_template("zoom.html", data=data)
+    return render_template("jeff.html")
 
 if __name__ == "__main__":
     app.run()

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sample</title>
+        <link rel="stylesheet" href="../static/css/sample.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav_container">
+                    <ul class="nav">
+                        <li class="nav_menu"><a class="link" href="./exam.html"><img src="../static/img/mono-kstars-planets.svg" width="24px" height="24px" /></a></li>
+                        <li class="nav_menu"><a class="link" href="#" onclick="chart()">Chart</a></li>
+                        <li class="nav_menu"><a class="link" href="#">Table</a></li>
+                        <li class="nav_menu"><a class="link" href="#">Link</a></li>
+                        <li class="nav_menu"><a class="link" href="#">About US</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <section class="main_image">
+            <div class="main_img_container">
+                <img class="main_img" src="https://miro.medium.com/max/7680/1*hvGHw2fnZ3UP8X4otNl7Fw.jpeg" />
+            </div>
+            <div class="main_str_container">
+                <span class="main_str">
+                    Looking for<br>habitable exoplanets...
+                </span>
+            </div>
+        </section>
+        <section class="chart_img">
+            <div class="chart_container">
+                <img class="chart" src="https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/overview/javascript-charts-graphs-index-data-label.png" />
+            </div>
+        </section>
+        <section class="for_scroll">
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+            <p>This is the main area.</p>
+        </section>
+        <script>
+            $(document).ready(() => {
+                $('.main_str_container').css("height", $('.main_img_container').css("height"));
+                $('.chart_container').css("height", $('.main_img_container').css("height"));
+
+                $(window).scroll(() => {
+                    if ($(window).scrollTop() <= 400){
+                        $('.main_img').css("opacity", 1 - $(window).scrollTop() / 400);
+                        $('.main_str_container').css("opacity", $(window).scrollTop() / 400);
+                        $('.main_str').css("opacity", $(window).scrollTop() / 400);
+                        $('.main_str').css("font-size", `${1+($(window).scrollTop() / 100)}em`);
+                        $('.chart_container').css("opacity", 0);
+                    }
+                    
+                    if ($(window).scrollTop() > 600){
+                        $('.main_str_container').css("opacity", 1 - ($(window).scrollTop()-600) / 400);
+                        $('.main_str').css("opacity", 1 - ($(window).scrollTop() - 600) / 400);
+                        $('.chart_container').css("opacity", ($(window).scrollTop()-600) / 400);
+                    }
+                });
+            });
+
+            function chart(){
+                window.scrollTo(0, 1000);
+            }
+        </script>    
+    </body>
+</html>

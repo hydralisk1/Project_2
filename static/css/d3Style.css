@@ -60,11 +60,13 @@
   padding-bottom: 60%; /* aspect ratio */
   vertical-align: top;
   overflow: hidden;
+  opacity: 0;
 }
 
 .svg-content-responsive {
   display: inline-block;
   position: absolute;
+  opacity: 0;
 }
 
 /* Mobile Rules */
