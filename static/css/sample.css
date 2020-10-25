@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    height: calc(min(400vh));
 }
 
 body {
@@ -68,15 +69,17 @@ header {
     padding-top: 10px;
 }
 
-.main_img_container, .main_str_container, .chart_container{
+.main_img_container, .main_str_container, .container_1, .container_2, .container_3{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    /*height: 100%;*/
+    height: calc(100vh);
     justify-content: center;
     align-items: center;
     display: flex;
+    background-color: black;
 }
 
 .main_str_container{
@@ -85,13 +88,13 @@ header {
     opacity: 0;
 }
 
-.chart_container{
+.container_1, .container_2, .container_3{
     color: black;
     background: white;
     opacity: 0;
 }
 
-.main_img, .chart_img {
+.main_img {
     max-width: 100%;
     height: auto;
     align-items: center;
@@ -119,13 +122,14 @@ header {
     border-radius: 4px;
   }
 
-  .stateText {
+.stateText {
     font-family: sans-serif;
     fill: #fff;
     text-anchor: middle;
-  }
-  
-  .stateCircle {
+}
+
+.stateCircle {
     fill: yellow;
     stroke: #e3e3e3;
-  }
+}
+

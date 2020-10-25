@@ -11,7 +11,7 @@
   width: 400px;
   height: 300px;
   content: " ";
-  background-image: url("static/img/nasa_habitable_zone.jpg");
+  background-image: url("../img/nasa_habitable_zone.jpg");
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;

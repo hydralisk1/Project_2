@@ -14,9 +14,5 @@ def index():
 def api():
     return jsonify(data)
 
-@app.route("/jeff")
-def zoom():
-    return render_template("jeff.html")
-
 if __name__ == "__main__":
     app.run()
