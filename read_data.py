@@ -8,41 +8,43 @@ def get_planet_data():
     Base = automap_base()
     Base.prepare(engine, reflect = True)
 
-    Planets = Base.classes.planets
-    Stars = Base.classes.stars
+    StackedChart = Base.classes.stackedchart
+    BarChart = Base.classes.barchart
     Exo = Base.classes.exoplanets
+    Further = Base.classes.furtherinterest
+    Glossary = Base.classes.glossary
 
     session = Session(engine)
 
-    p_query = session.query(Planets.name, Planets.host_star, Planets.radius_e, Planets.temp_f, Planets.habit_code, Planets.circumference_k)
-    s_query = session.query(Stars.star, Stars.temp_k, Stars.radius_s, Stars.gravity, Stars.gal_lat, Stars.gal_long, Stars.distance)
+    s_query = session.query(StackedChart.year, StackedChart.radialvelocity, StackedChart.transit, StackedChart.imaging, StackedChart.microlensing)
+    b_query = session.query(BarChart.type, BarChart.number, BarChart.percent)
     e_query = session.query(Exo.exoPlanetName, Exo.PlanetMassEst, Exo.PlanetRadiusEst, Exo.PlanetTempType, Exo.PlanetDetection, Exo.DiscoverYr, Exo.StarConst, Exo.PotHabitableOptimistic, Exo.PotHabitableConservative, Exo.LastUpdate, Exo.StarRtAsc, Exo.StarDistance)
+    g_query = session.query(Glossary.name, Glossary.value, Glossary.description, Glossary.more_info)
+    f_query = session.query(Further.cat, Further.name, Further.duration, Further.description, Further.link)
 
-    p_keys = ["name", "host_star", "radius_e", "temp_f", "habit_code", "circumference_k"]
-    s_keys = ["star", "temp_k", "radius_s", "gravity", "gal_lat", "gal_long", "distance"]
+    queries = [s_query, b_query, e_query, g_query, f_query]
+
+    s_keys = ["year", "RadialVelocity", "Transit", "Imaging", "Microlensing"]
+    b_keys = ["type", "number", "percent"]
     e_keys = ["exoPlanetName", "PlanetMassEst", "PlanetRadiusEst", "PlanetTempType", "PlanetDetection", "DiscoverYr", "StarConst", "PotHabitableOptimistic", "PotHabitableConservative", "LastUpdate", "StarRtAsc", "StarDistance"]
+    g_keys = ["name", "value", "description", "more_info"]
+    f_keys = ["Cat", "Name", "Duration", "Description", "Link"]
+
+    keys = [s_keys, b_keys, e_keys, g_keys, f_keys]
+
     data = {
-        "stars": [],
-        "planets": [],
-        "exoplanets": []
+        "stackedChart": [],
+        "barChart": [],
+        "exoplanets": [],
+        "glossary": [],
+        "furtherInterest": []
     }
 
-    for row in p_query:
-        temp_dict = {}
-        for (key, i) in zip(p_keys, range(len(row))):
-            temp_dict[key] = row[i]    
-            data["planets"].append(temp_dict)
-
-    for row in s_query:
-        temp_dict = {}
-        for (key, i) in zip(s_keys, range(len(row))):
-            temp_dict[key] = row[i]    
-            data["stars"].append(temp_dict)
-
-    for row in e_query:
-        temp_dict = {}
-        for (key, i) in zip(e_keys, range(len(row))):
-            temp_dict[key] = row[i]    
-            data["exoplanets"].append(temp_dict)
+    for (query, i) in zip(queries, range(len(queries))):
+        for row in query:
+            temp_dict = {}
+            for (key, j) in zip(keys[i], range(len(row))):
+                temp_dict[key] = row[j]
+            data[list(data.keys())[i]].append(temp_dict)
 
     return data

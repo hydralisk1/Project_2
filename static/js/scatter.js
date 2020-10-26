@@ -14,7 +14,7 @@ var height = svgHeight - margin.top - margin.bottom;
 // Create an SVG wrapper, append an SVG group that will hold our chart,
 // and shift the latter by left and top margins.
 var svg = d3
-  .select(".container_1")
+  .select("#scatterChart")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
@@ -25,8 +25,8 @@ var chartGroup = svg.append("g")
 
 // Initial Params
 // P_NAME - planet name
-// P_HABZONE_OPT - the planet is in the optimistic habitable zone flag (true = yes)
-// P_HABZONE_CON - the planet is in the conservative habitable zone flag (true = yes)
+// P_HABZONE_OPT - the planet is in the optimistic habitable zone flag (1 = yes)
+// P_HABZONE_CON - the planet is in the conservative habitable zone flag (1 = yes)
 // P_DENSITY - planet density (earth units)
 // P_GRAVITY - planet gravity (earth units)
 
@@ -80,7 +80,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     label = "Planet Mass-Radius relation est:";
   }
   var toolTip = d3.tip()
-    .attr("class", "tooltip")
+    .attr("class", "tooltip_1")
     .offset([80, -60])
     .html(function(d) {
       return (`${d.exoPlanetName}<br>${label} ${d[chosenXAxis]}`);
@@ -92,7 +92,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     toolTip.show(data);
   })
     // onmouseout event
-    .on("mouseout", function(data) {
+    .on("mouseout", function(data, index) {
       toolTip.hide(data);
     });
 
@@ -104,7 +104,7 @@ d3.json("/api").then(my_data => {
 
   // parse data
   var habitableZone = my_data["exoplanets"];
-
+  // parse data
   habitableZone.forEach(function(data) {
     data.PlanetRadiusEst = +data.PlanetRadiusEst;
     data.StarDistance = +data.StarDistance;

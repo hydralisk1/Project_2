@@ -1,63 +1,55 @@
 $(document).ready(function() {
+    $(document).scrollTop(0);
     $('.container_1').css("display", "none");
     $('.container_2').css("display", "none");
     $('.container_3').css("display", "none");
 
-    var lenPage = 400;
-    var marPage = 200;
+    var fdIn = 400;
+    var show = 200;
+    var fdOut = 400;
     var nContainers = 3;
+    var strCss = [".habit_str", "", ".look_str"];
             
     $(window).scroll(function() {
-        //$('.main_img_container').css("height", $(window).height());
-        //$('.main_str_container').css("height", $(window).height());
-        //$('.container_1').css("height", $(window).height());
-        var nPage = parseInt($(window).scrollTop() / (lenPage+marPage));
-        console.log("Page=", nPage);
+        var nPage = parseInt($(window).scrollTop() / (fdIn + show + fdOut));
+        var currentLoc = $(window).scrollTop() % (fdIn + show + fdOut);
+        
         switch (nPage){
             case 0:
+                $('.main_img').css("display", "flex");
+                $('.main_str_container').css("display", "flex");
+
                 for(i = 1;i <= nContainers;i++)
                     $(`.container_${i}`).css("display", "none");
                 
-                if($(window).scrollTop() <= lenPage){
-                    $('.main_img').css("opacity", 1 - $(window).scrollTop() / lenPage);
-                    $('.main_str_container').css("opacity", $(window).scrollTop() / lenPage);
+                if(currentLoc <= fdIn){
+                    $('.main_str_container').css("opacity", $(window).scrollTop() / (fdIn*2));
                     $('.main_str').css("font-size", `${($(window).scrollTop() / 100)}vw`);
+                }else if(currentLoc <= (fdIn+show)){
+                    $('.main_str_container').css("opacity", 0.5);
                 }else{
-                    $('.main_img').css("opacity", 0);
-                    $('.main_str_container').css("opacity", 1);
+                    $('.main_img').css("opacity", 1 - ((currentLoc-fdIn-show) / fdOut));
+                    $('.main_str_container').css("opacity", 0.5 - ((currentLoc-fdIn-show) / (fdIn * 2)));
                 }
                 break;
             
-            case 1:
-                $('.container_1').css("display", "flex");
-
-                if(($(window).scrollTop() - (marPage+lenPage)) <= lenPage){
-                    $('.main_str_container').css("opacity", 1 - ($(window).scrollTop() - lenPage - marPage) / lenPage);
-                    $('.container_1').css("opacity", ($(window).scrollTop() - lenPage - marPage) / lenPage);
-                }else{
-                    $('.main_str_container').css("opacity", 0);
-                    $('.container_1').css("opacity", 1);
-                }
-
             default:
+                $('.main_str_container').css("display", "none");
+                $('.main_img').css("display", "none");
+
                 for(i = 1;i <= nContainers;i++)
-                    if(i === (nPage-1) || i === nPage)
+                    if(i === nPage)
                         $(`.container_${i}`).css("display", "flex");
                     else
                         $(`.container_${i}`).css("display", "none");
 
-                if(($(window).scrollTop() - (nPage * (marPage+lenPage))) <= lenPage){
-                    $(`.container_${nPage-1}`).css("opacity", 1 - ($(window).scrollTop() - (lenPage + marPage)*nPage) / lenPage);
-                    $(`.container_${nPage}`).css("opacity", ($(window).scrollTop() - (lenPage + marPage)*nPage) / lenPage);
-                }else{
-                    $(`.container_${nPage-1}`).css("opacity", 0);
+                if(currentLoc <= fdIn){
+                    $(`.container_${nPage}`).css("opacity", currentLoc / fdIn);
+                    $(strCss[nPage-1]).css("font-size", `${(currentLoc / 50)}vw`);
+                }else if(currentLoc <= (fdIn+show))
                     $(`.container_${nPage}`).css("opacity", 1);
-                }
-                console.log((($(window).scrollTop() - marPage*nPage) % lenPage) / lenPage);
+                else
+                    $(`.container_${nPage}`).css("opacity", 1 - ((currentLoc-fdIn-show)/fdOut));
         }    
     });
 });
-
-function chart(){
-    $('html,body').animate({scrollTop:1000}, 'fast');
-}

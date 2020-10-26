@@ -10,6 +10,18 @@ data = get_planet_data()
 def index():
     return render_template("index.html")
 
+@app.route("/charts")
+def charts():
+    return render_template("charts.html")
+
+@app.route("/glossary")
+def glossary():
+    return render_template("glossary.html")
+
+@app.route("/further")
+def further():
+    return render_template("further.html")
+
 @app.route("/api")
 def api():
     return jsonify(data)

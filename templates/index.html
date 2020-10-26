@@ -1,28 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <title>Sample</title>
-      <link rel="stylesheet" href="static/css/sample.css">
-      <link rel="stylesheet" href="static/css/style-jeff.css">
-      <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-      <script src="static/js/scrolling.js"></script>
-  </head>
-  <body>
-      <header>
-          <nav>
-              <div class="nav_container">
-                  <ul class="nav">
-                      <li class="nav_menu"><a class="link" href="/"><img src="static/img/mono-kstars-planets.svg" width="24px" height="24px" /></a></li>
-                      <li class="nav_menu"><a class="link" href="#" onclick="chart()">Chart</a></li>
-                      <li class="nav_menu"><a class="link" href="#">Table</a></li>
-                      <li class="nav_menu"><a class="link" href="#">Link</a></li>
-                      <li class="nav_menu"><a class="link" href="#">About US</a></li>
-                  </ul>
-              </div>
-          </nav>
-      </header>
+{% extends "base.html" %}
+{% block body %}
       <section class="main_image">
         <div class="main_img_container">
             <img class="main_img" src="https://miro.medium.com/max/7680/1*hvGHw2fnZ3UP8X4otNl7Fw.jpeg" />
@@ -35,17 +12,15 @@
       </section>
       <section class="chart">
         <div class="container_1">
-            <!-- We append our chart here. -->
+          <span class="habit_str">
+            Habitable Zone?
+          </span>
         </div>
         <div class="container_2">
-            <span>Additional Page 1</span>>
+            <img class="habit_img" src="static/img/nasa_habitable_zone.jpg" />
         </div>
         <div class="container_3">
-            <span>Additional Page 2</span>>
+            <span class="look_str">Let's look into it.</span>
         </div>
       </section>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-    <script src="static/js/app-jeff.js"></script>
-  </body>
-</html>
+{% endblock %}
